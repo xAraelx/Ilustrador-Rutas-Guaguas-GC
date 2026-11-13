@@ -7,9 +7,9 @@ Visualización 3D interactiva de la red de guaguas de Gran Canaria hecha con [th
 
 **Proyecto en CodeSandbox:** [ENLACE AL SANDBOX](https://codesandbox.io/p/sandbox/guaguas-cmz5px)
 
-**Vídeo de la ejecución:** [ENLACE AL VÍDEO](https://youtu.be/ENLACE)
+**Vídeo de la ejecución:** [ENLACE AL VÍDEO](https://youtu.be/7X_i7mcNxoA)
 
-**Vídeo de la ejecución reducido:** [ENLACE AL VÍDEO](https://youtu.be/ENLACE)
+**Vídeo de la ejecución reducido:** [ENLACE AL VÍDEO](https://drive.google.com/file/d/1zeBiwCuJjI3jMuo4HrzIYwY97xrmFVoY/view?usp=sharing)
 
 
 ------
