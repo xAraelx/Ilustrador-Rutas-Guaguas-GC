@@ -163,6 +163,7 @@ Al pulsar una línea:
 
 ### Asistencia de IA
 
-- [Planteamiento del proyecto y de los datos necesarios (chat con Claude)](ENLACE)
-- [Preparación de las rutas, los trazados y el mapa de alturas (chat con Claude)](ENLACE)
-- [Código de la visualización con three.js (chat con Claude)](ENLACE)
+- [Como obtener la información de las guaguas de Gran Canaria en overpass turbo (chat con Claude)](https://claude.ai/share/1ff9add5-8772-4fd3-8972-639873e8e557)
+- [Como obtener las rutas de las guaguas en openstreetmap dado un id de overpass turbo (chat con Claude)](https://claude.ai/share/3e2522fa-8524-4ef2-a4b5-8b74753837df)
+- [Obtener un CSS base para el panel lateral  (chat con Claude)](https://claude.ai/share/85b0e009-53e6-454e-921d-6e2786fc188f)
+- [Como implementar un buscador en el GUI (chat con Claude)](https://claude.ai/share/8187526a-2626-48d1-95d6-5f5a04824345)
