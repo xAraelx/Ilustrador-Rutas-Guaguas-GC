@@ -1,0 +1,11 @@
+{
+  "oeste": -15.84546,
+  "este": -15.33995,
+  "sur": 27.67844,
+  "norte": 28.18252,
+  "altura_max_m": 1950,
+  "png": "gran_canaria_altura.png",
+  "ancho_px": 2048,
+  "alto_px": 2042,
+  "nota": "gris/255*1950 = altura en metros; mar=0; imagen en lat/lon (equirectangular)"
+}
