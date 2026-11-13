@@ -3,30 +3,28 @@
 Visualización 3D interactiva de la red de guaguas de Gran Canaria hecha con [three.js](https://threejs.org/) (r152). Representa **152 rutas** de **Global** y **Guaguas Municipales** sobre un terreno con el relieve real de la isla, cubierto con el mapa de OpenStreetMap, que se vuelve más detallado a medida que te acercas. Sobre cada ruta circulan guaguas animadas que salen de sus cabeceras dentro del horario de la línea. Se puede buscar una línea por su número, elegir qué líneas se ven y pulsar una ruta para consultar sus paradas.
 
 ### Autor:
-- [NOMBRE Y APELLIDOS](https://github.com/USUARIO)
+- [Arael Jesus Almeida Gonzlez](https://github.com/xAraelx)
 
-**Proyecto en CodeSandbox:** [ENLACE AL SANDBOX](https://codesandbox.io/p/sandbox/cmz5px)
+**Proyecto en CodeSandbox:** [ENLACE AL SANDBOX](https://codesandbox.io/p/sandbox/guaguas-cmz5px)
 
 **Vídeo de la ejecución:** [ENLACE AL VÍDEO](https://youtu.be/ENLACE)
+
+**Vídeo de la ejecución reducido:** [ENLACE AL VÍDEO](https://youtu.be/ENLACE)
 
 
 ------
 
 ## Previsualización del sistema
 
-<!-- Sustituir por las capturas o gifs propios -->
 
 Vista general de la isla con todas las rutas
 
-![VistaGeneral](src/gifs/VistaGeneral.gif)
+![VistaGeneral](src/gif_relieve.gif)
 
-Simulación de las guaguas
+Simulación de las guaguas y Ruta seleccionada con sus paradas
 
-![Simulacion](src/gifs/Simulacion.gif)
+![Simulacion](src/gif_rutas.gif)
 
-Ruta seleccionada con sus paradas
-
-![RutaSeleccionada](src/gifs/RutaSeleccionada.gif)
 
 ------
 
@@ -35,7 +33,7 @@ Ruta seleccionada con sus paradas
 ```
 /
 |- src/
-|  |- index.html                 #Página: solo carga index.js
+|  |- index.html                 #Pagina: solo carga index.js
 |  |- index.js                   #Arranque: carga el relieve y lanza el bucle de animación
 |  |- config.js                  #Constantes, colores y estado compartido
 |  |- proyeccion.js              #Conversión de latitud y longitud a coordenadas de la escena
@@ -62,8 +60,6 @@ El proyecto está pensado para CodeSandbox, que instala las dependencias de `pac
 - `parcel-bundler` 1.x (como dependencia de desarrollo)
 
 Hace falta **conexión a internet**, porque las teselas del mapa se descargan de los servidores de OpenStreetMap mientras se navega.
-
-Todo el código es compatible con Parcel 1, así que no usa `async`/`await`, `?.` ni `??`.
 
 ------
 
@@ -104,7 +100,6 @@ Mientras haya texto en el buscador manda la búsqueda; al borrarlo, vuelven a ma
 - **Horarios**: de las webs de los operadores se tomaron la primera y la última salida de cada sentido y el enlace a los horarios de la línea.
 - **Resultado**: `guaguas.json`, con **152 rutas** (109 de Global, en 98 líneas, y 43 de Guaguas Municipales, en 42 líneas), 304 trazados y unos 66.000 puntos en total (unos 2 MB). Los trazados se simplificaron para que el archivo pese poco.
 - **Paradas**: cada sentido guarda sus paradas en orden, con nombre, posición y su fracción dentro del recorrido.
-- **Omitidas**: las rutas sin horario, sin paradas o con un solo sentido. En total 16 relaciones sueltas, además de las líneas sin horario publicado.
 - **Duración del trayecto**: no la publican las empresas. Se **estima** dividiendo la longitud del trazado entre una velocidad media, que es de 35 km/h para Global y de 18 km/h para Guaguas Municipales (más urbanas, con paradas más frecuentes). Es un valor orientativo, no real.
 
 ### Terreno con relieve
@@ -122,7 +117,6 @@ Una sola imagen del mapa se pixelaría al acercarse, así que el mapa se carga c
 - **Sin huecos**: la tesela padre sigue visible hasta que se han descargado las cuatro hijas.
 - **Solo lo necesario**: se piden únicamente las teselas que tocan la isla y que están en el campo de visión, con un máximo de 4 descargas simultáneas.
 - **Relieve a cualquier zoom**: cada tesela es una malla de 24 × 24 segmentos levantada con el mapa de alturas. Lleva un faldón vertical en los bordes para tapar las grietas entre niveles de detalle distintos.
-- **Proyección**: toda la escena está en Web Mercator (en km), centrada en la isla, igual que las teselas, así que no hace falta reproyectar ninguna imagen.
 
 ### Rutas
 
@@ -150,20 +144,6 @@ Al pulsar una línea:
 - Se abre un **cuadro de información** con el número de línea, el operador, el origen y el destino, el botón para ver los horarios, y la lista de paradas de cada sentido como una línea de tiempo.
 - Las rutas cuya vuelta es una variante distinta de la ida (10, 116 y 117 de Global y 64 de Guaguas Municipales) lo indican con un aviso.
 
-### Cámara
-
-`OrbitControls` con zoom hacia el cursor. La velocidad de desplazamiento aumenta automáticamente al acercarse, para que moverse con mucho zoom no sea lento, y se limita la inclinación para no pasar por debajo del terreno.
-
-**Problemas observados y limitaciones:**
-- Las **duraciones de los trayectos son estimadas**, no hay registros temporales de las empresas.
-- Los horarios solo recogen la primera y la última salida de cada línea, así que las salidas se reparten de forma regular en vez de reproducir cada expedición real.
-- Las guaguas circulan a velocidad constante y no se detienen en las paradas ni se ven afectadas por el tráfico.
-- Algunas variantes (como servicios nocturnos o escolares) no se representan, y se omiten las líneas con un solo sentido en los datos.
-- 107 de los 304 trazados tienen la posición de las paradas aproximada.
-- 35 trazados tienen saltos de más de 1,5 km entre dos puntos, que pueden ser tramos rectos de autopista simplificados o pequeños huecos al unir los tramos.
-- El relieve tiene una resolución de unos 25 m, y las guaguas no se inclinan con la pendiente.
-- El mapa necesita conexión a internet y depende de la disponibilidad de los servidores de teselas de OpenStreetMap.
-
 ------
 
 ## Fuentes
@@ -173,7 +153,7 @@ Al pulsar una línea:
 - Mapa y trazados de las rutas: © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributors, descargados con [Overpass Turbo](https://overpass-turbo.eu)
 - Teselas del mapa: [servidor de teselas de OpenStreetMap](https://wiki.openstreetmap.org/wiki/Tile_usage_policy)
 - Relieve: Modelo Digital del Terreno MDT25 del Instituto Geográfico Nacional de España, obtenido del [Centro de Descargas del CNIG](https://centrodedescargas.cnig.es)
-- Rutas y horarios: web de [Guaguas Municipales](https://www.guaguas.com) y web de Global
+- Rutas y horarios: web de [Guaguas Municipales](https://www.guaguas.com) y web de [Global](https://guaguasglobal.com)
 
 ### Documentación
 
@@ -182,8 +162,6 @@ Al pulsar una línea:
 - [lil-gui](https://lil-gui.georgealways.com/)
 
 ### Asistencia de IA
-
-<!-- Sustituir por los enlaces a las conversaciones compartidas -->
 
 - [Planteamiento del proyecto y de los datos necesarios (chat con Claude)](ENLACE)
 - [Preparación de las rutas, los trazados y el mapa de alturas (chat con Claude)](ENLACE)
